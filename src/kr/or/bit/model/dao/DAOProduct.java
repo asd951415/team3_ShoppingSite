@@ -17,10 +17,11 @@ import kr.or.bit.model.dto.DTOProduct;
 
 public class DAOProduct {
 	private static DBManager instance = DBManager.getInstance();
-	private static final String LEE2_SQL_SELECT_PRODUCT = "SELECT * FROM PRODUCT";
+	
 	private static final String SQL_SELECT_PRODUCT_BY_PNUM = "SELECT * FROM PRODUCT WHERE P_NUM = ?";
 	private static final String SQL_UPDATE_PRODUCT_P_AMOUNT = "UPDATE PRODUCT "
 															+ "SET P_AMOUNT = P_AMOUNT - ? WHERE P_NUM = ?";
+	private static final String SQL_SELECT_PRODUCTS_BY_SEL_NUM = "SELECT * FROM PRODUCT WHERE SEL_NUM =?";
 
 /*
 //	private static final String SQL_SELECT_PRODUCTS_BY_PNUM = "SELECT * FROM PRODUCT WHERE P_NUM = ?";
@@ -60,28 +61,7 @@ public class DAOProduct {
 		return productList;
 	}
 */
-	public static DTOProduct lee2_getDTOProduct() {
-		DTOProduct product = null;
-		Connection conn = null;
-		PreparedStatement pstmt = null;
-		ResultSet rs = null;
-		try {
-			conn = instance.getConnection();
-			pstmt = conn.prepareStatement(LEE2_SQL_SELECT_PRODUCT);
-			rs = pstmt.executeQuery();
-			while(rs.next()) {
-				product = DAOProduct.setDTOProduct(rs);
-			}
-			
-		} catch(SQLException e) {
-			e.printStackTrace();
-		} finally {
-			instance.freeConnection(conn, pstmt, rs);
-		}
-		
-		return product;
-	}
-	
+
 	public static DTOProduct getDTOProductByPNum(int pNum) {
 		DTOProduct product = null;
 		Connection conn = null;
@@ -126,6 +106,30 @@ public class DAOProduct {
 		return resultRow;
 	}
 	
+	public static List<DTOProduct> ryu_getProductListBySelNum(int selNum) {
+		List<DTOProduct> productList = new ArrayList<DTOProduct>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = instance.getConnection();
+			pstmt = conn.prepareStatement(SQL_SELECT_PRODUCTS_BY_SEL_NUM);
+			pstmt.setInt(1, selNum);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				DTOProduct product = DAOProduct.setDTOProduct(rs);
+				productList.add(product);
+			}
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			instance.freeConnection(conn, pstmt, rs);
+		}
+		
+		return productList;
+	}
+	
 	private static DTOProduct setDTOProduct(ResultSet rs) throws SQLException {
 		int pNum = rs.getInt("P_NUM");
 		int selNum = rs.getInt("SEL_NUM");
@@ -140,11 +144,11 @@ public class DAOProduct {
 		return product;
 	}
 	
-	private static String getSQL_SELECT_PRODUCTS_BY_PNUM(int num) {
-		String sql = "SELECT * FROM PRODUCT WHERE P_NUM = ?";
-		for(int i = 0; i < num; i++) {
-			sql += " OR P_NUM = ?";
-		}
-		return sql;
-	}
+//	private static String getSQL_SELECT_PRODUCTS_BY_PNUM(int num) {
+//		String sql = "SELECT * FROM PRODUCT WHERE P_NUM = ?";
+//		for(int i = 0; i < num; i++) {
+//			sql += " OR P_NUM = ?";
+//		}
+//		return sql;
+//	}
 }

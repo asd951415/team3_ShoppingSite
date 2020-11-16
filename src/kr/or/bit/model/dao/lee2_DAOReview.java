@@ -29,11 +29,11 @@ public class lee2_DAOReview {
 		int resultRow=0;
 		try {
 			conn = instance.getConnection();
-			pstmt = conn.prepareStatement(SQL_INSERT_REVIEW);		
-			pstmt.setInt(2, rev.getSaleNum());
-			pstmt.setString(3, rev.getId());
-			pstmt.setString(4, rev.getRevContent());
-			pstmt.setInt(5, rev.getRevStars());		
+			pstmt = conn.prepareStatement(SQL_INSERT_REVIEW);			
+			pstmt.setInt(1, rev.getSaleNum());
+			pstmt.setString(2, rev.getId());
+			pstmt.setString(3, rev.getRevContent());
+			pstmt.setInt(4, rev.getRevStars());		
 			rs = pstmt.executeQuery();
 			resultRow = pstmt.executeUpdate();
 			while(rs.next()) {

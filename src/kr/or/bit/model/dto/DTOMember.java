@@ -7,9 +7,20 @@ public class DTOMember {
 	private String hp;
 	private String cardNum;
 	private String address;
-	
+	private String selFlag;
+
 	public DTOMember() {}
 	
+	public DTOMember(String id, String pwd, String name, String hp, String cardNum, String address, String selFlag) {
+		this.id = id;
+		this.pwd = pwd;
+		this.name = name;
+		this.hp = hp;
+		this.cardNum = cardNum;
+		this.address = address;
+		this.selFlag = selFlag;
+	}
+
 	public DTOMember(String id, String pwd, String name, String hp, String cardNum, String address) {
 		this.id = id;
 		this.pwd = pwd;
@@ -18,7 +29,7 @@ public class DTOMember {
 		this.cardNum = cardNum;
 		this.address = address;
 	}
-	
+
 	public DTOMember(String id, String pwd, String hp, String cardNum, String address) {
 		this.id = id;
 		this.pwd = pwd;
@@ -73,6 +84,20 @@ public class DTOMember {
 
 	public void setAddress(String address) {
 		this.address = address;
+	}
+
+	public String getSelFlag() {
+		return selFlag;
+	}
+
+	public void setSelFlag(String selFlag) {
+		this.selFlag = selFlag;
+	}
+
+	@Override
+	public String toString() {
+		return "DTOMember [id=" + id + ", pwd=" + pwd + ", name=" + name + ", hp=" + hp + ", cardNum=" + cardNum
+				+ ", address=" + address + ", selFlag=" + selFlag + "]";
 	}
 	
 }

@@ -9,16 +9,44 @@ public class DTOPdInqPost {
 	private String inqTitle;
 	private String inqContent;
 	private Date inqCreatedAt;
+	private char inqPrivate;
 	
 	public DTOPdInqPost() {}
 	
-	public DTOPdInqPost(int inqNum, int saleNum, String id, String inqTitle, String inqContent, Date inqCreatedAt) {
+	public DTOPdInqPost(int saleNum, String id) {	
+		this.saleNum = saleNum;
+		this.id = id;
+	}
+	
+	
+	
+	public DTOPdInqPost(int saleNum, String id, String inqTitle, String inqContent,char inqPrivate) {	
+		this.saleNum = saleNum;
+		this.id = id;
+		this.inqTitle = inqTitle;
+		this.inqContent = inqContent;	
+		this.inqPrivate = inqPrivate;
+	}
+	
+	public DTOPdInqPost(int inqNum, int saleNum, String id, String inqTitle, String inqContent, char inqPrivate) {
 		this.inqNum = inqNum;
 		this.saleNum = saleNum;
 		this.id = id;
 		this.inqTitle = inqTitle;
 		this.inqContent = inqContent;
+		this.inqPrivate = inqPrivate;
+		
+	}
+	
+	public DTOPdInqPost(int inqNum, int saleNum, String id, String inqTitle, String inqContent, char inqPrivate, Date inqCreatedAt) {
+		this.inqNum = inqNum;
+		this.saleNum = saleNum;
+		this.id = id;
+		this.inqTitle = inqTitle;
+		this.inqContent = inqContent;
+		this.inqPrivate = inqPrivate;
 		this.inqCreatedAt = inqCreatedAt;
+		
 	}
 
 	public int getInqNum() {
@@ -68,5 +96,20 @@ public class DTOPdInqPost {
 	public void setInqCreatedAt(Date inqCreatedAt) {
 		this.inqCreatedAt = inqCreatedAt;
 	}
-	
+
+	public char getInqPrivate() {
+		return inqPrivate;
+	}
+
+	public void setInqPrivate(char inqPrivate) {
+		this.inqPrivate = inqPrivate;
+	}
+
+	@Override
+	public String toString() {
+		return "DTOPdInqPost [inqNum=" + inqNum + ", saleNum=" + saleNum + ", id=" + id + ", inqTitle=" + inqTitle
+				+ ", inqContent=" + inqContent + ", inqCreatedAt=" + inqCreatedAt + ", inqPrivate=" + inqPrivate + "]";
+	}
+
+		
 }

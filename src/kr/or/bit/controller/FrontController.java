@@ -15,6 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 import kr.or.bit.action.Action;
 import kr.or.bit.action.ActionForward;
 import kr.or.bit.service.*;
+import kr.or.bit.service_ajax.InqPostListAjaxService;
 
 @WebServlet(
 		name = "FrontController",
@@ -42,11 +43,17 @@ public class FrontController extends HttpServlet {
 		actionList.put("/signOut.do", new SignOutService());
 		actionList.put("/category.do", new CategoryPageService());
 		actionList.put("/salePage.do", new SalePageService());
-		actionList.put("/cart.do", new CartPageService());
-		actionList.put("/purchasePage.do", new PurchasePageService());
-		actionList.put("/purchasedPage.do", new PurchasedPageService());
-		actionList.put("/myPage.do", new MyPageService());
-		actionList.put("/productList.do", new lee2_ProductListPage());
+		actionList.put("/member/cart.do", new CartPageService());
+		actionList.put("/member/purchasePage.do", new PurchasePageService());
+		actionList.put("/member/purchasedPage.do", new PurchasedPageService());
+		actionList.put("/member/myPage.do", new MyPageService());
+		actionList.put("/member/writeInquPage.do", new WriteInquPageService());
+		actionList.put("/member/registSellerPage.do", new RegistSellerPageService());
+		actionList.put("/seller/sellerPage.do", new SellerPageService());
+		actionList.put("/seller/saleListPage.do", new SaleListPageService());
+		actionList.put("/seller/writeSalePage.do", new WriteSalePageService());
+		actionList.put("/seller/productList.do", new ProductListService());
+		actionList.put("/seller/productAddPage.do", new ProductAddPageService());
 		
 		System.out.println(" initialized");
 	}

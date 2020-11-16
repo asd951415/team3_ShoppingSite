@@ -13,6 +13,7 @@ import javax.servlet.ServletRequest;
 import javax.servlet.ServletResponse;
 import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -35,8 +36,10 @@ public class setUtfFilter implements Filter {
 
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
 		HttpServletRequest httpReq = (HttpServletRequest)request;
+		HttpServletResponse httpRes = (HttpServletResponse)response;
 		// set UTF-8
 		httpReq.setCharacterEncoding("UTF-8");
+		httpRes.setCharacterEncoding("UTF-8");
 		
 		// set urlCommand
 		String requestURI = httpReq.getRequestURI();

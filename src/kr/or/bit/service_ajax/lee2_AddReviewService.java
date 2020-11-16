@@ -25,14 +25,18 @@ public class lee2_AddReviewService implements ActionAjax {
 //		stars:num,
 //		content:string
 //		}
+		System.out.println("들어옴");
 		JsonObject jsonBody = (JsonObject)request.getAttribute("jsonBody");
+		System.out.println(jsonBody);
 		String salePostnum = jsonBody.get("salePostnum").getAsString();
 		String content = jsonBody.get("content").getAsString();
 		int stars = jsonBody.get("stars").getAsInt();
-		
-		
-		HttpSession session = request.getSession();
-		DTOReview reivew = new DTOReview(Integer.parseInt(salePostnum), session.getId(), content, stars);
+		String id=jsonBody.get("id").getAsString();
+		System.out.println("중간");
+//		HttpSession session = request.getSession();
+//		String id = session.getId();
+		DTOReview reivew = new DTOReview(Integer.parseInt(salePostnum), id, content, stars);
+		System.out.println(reivew);
 		resultRow=lee2_DAOReview.insertReview(reivew);
 		
 		
@@ -40,8 +44,9 @@ public class lee2_AddReviewService implements ActionAjax {
 		else ajaxData.setData("fail");
 		
 		ajaxData.setContentType("text/plain");
-		
+		System.out.println("종료");
 		return ajaxData;
 	}
 
+	
 }

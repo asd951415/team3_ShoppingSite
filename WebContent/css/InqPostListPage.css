@@ -1,0 +1,99 @@
+@charset "UTF-8";
+
+.sideBar_content_container{
+	display:flex;
+}
+
+.sideBar_container{
+	flex-grow: 2;
+}
+
+.productList_container{
+	flex-grow: 8;
+}
+
+
+.inqueryList_container {
+  display: flex;
+}
+
+.main-title {
+  text-align: center;
+  padding: 50px;
+  border-bottom: 50px;
+  margin-bottom: 50px;
+}
+
+/* 문의글목록 시작 */
+
+.productList_container {
+  flex-basis: 80%;
+  margin: 0 auto;
+}
+a {
+  text-decoration: none;
+  color: #ffffff;
+}
+
+.productList_title {
+  text-align: center;
+}
+
+.pd_info_title h2 {
+  margin-left: 77px;
+}
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  width: 90%;
+  margin: 0 auto;
+  margin-top: 50px;
+}
+
+td,
+th {
+  border-bottom: 1px solid #dddddd;
+  text-align: left;
+  padding: 30px;
+}
+
+.total_price h1 {
+  text-align: right;
+  margin-right: 90px;
+}
+
+li {
+  list-style: none;
+}
+
+.pd_info_wrap {
+  display: flex;
+}
+
+.member_info_title {
+  width: 90%;
+  margin-top: 40px;
+  margin-left: 70px;
+  margin-bottom: 30px;
+}
+
+.member_info_container td {
+  font-size: large;
+}
+
+.address_info_container h1 {
+  margin-left: 70px;
+  margin-top: 80px;
+}
+
+.pay_btn {
+  padding: 25px;
+  width: 100%;
+  max-width: 260px;
+  text-align: center;
+  margin: 0px auto;
+  display: block;
+  background: #000000;
+  color: #ffffff;
+  font-size: 1.5em;
+}

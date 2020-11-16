@@ -17,6 +17,7 @@ public class DTOSeller {
 		this.selAccount = selAccount;
 	}
 
+
 	public int getSelNum() {
 		return selNum;
 	}
