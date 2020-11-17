@@ -7,6 +7,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Map;
+
+import org.apache.commons.collections.map.HashedMap;
 
 import kr.or.bit.model.DBManager;
 import kr.or.bit.model.dto.DTOReview;
@@ -16,10 +19,59 @@ public class lee2_DAOReview {
 	private static DBManager instance = DBManager.getInstance();
 	
 	private static final String SQL_SELECT_REVIEW_BY_REV_NUM = "SELECT * FROM REVIEW WHERE REV_NUM = ?";
+	private static final String SQL_SELECT_REVIEW_BY_SALE_NUM = "SELECT * FROM REVIEW WHERE SALE_NUM = ?";
 	private static final String SQL_DELETE_REVIEW_BY_SALE_NUM= "DELETE * FROM REVIEW WHERE SALE_NUM = ?";
 	private static final String SQL_INSERT_REVIEW = "INSERT INTO REVIEW (SALE_NUM, ID, REV_CONTENT, REV_STARS) VALUES (?, ?, ?, ?)";
 																
 
+	
+	public List<Map<String,Object>> getReview(int saleNum) {
+		DTOReview reivew = null;
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
+		Map<String,Object> map;
+		
+		try {
+			conn = instance.getConnection();
+			pstmt = conn.prepareStatement(SQL_SELECT_REVIEW_BY_SALE_NUM);
+			pstmt.setInt(1, saleNum);
+			
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				reivew = lee2_DAOReview.setDTOReview(rs);
+				map = new HashedMap();
+				map.put("sale_num",reivew.getSaleNum());
+				map.put("rev_content", reivew.getRevContent());
+				map.put("rev_stars", reivew.getRevStars());
+				map.put("rev_created_at", reivew.getRevCreatedAt());
+				list.add(map);
+				
+				
+				
+			}
+			
+			for(int i=0; i<list.size(); i++) {
+				System.out.println(i+": "+list.get(i));
+			}
+			
+	
+			
+			
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			instance.freeConnection(conn, pstmt);
+			
+		}
+		
+		return list;
+	}
+	
+	
+	
+	
 	
 	public static int insertReview(DTOReview rev) {
 		DTOReview reivew = null;
@@ -75,8 +127,8 @@ public class lee2_DAOReview {
 		String id = rs.getString("ID");
 		String rev_content = rs.getString("REV_CONTENT").trim();
 		int rev_stars = rs.getInt("REV_STARS");
-		
-		DTOReview review = new DTOReview(sale_num, id, rev_content, rev_stars);
+		Date rev_created_at = rs.getDate("rev_created_at");
+		DTOReview review = new DTOReview(sale_num, id, rev_content, rev_stars,rev_created_at);
 		return review;
 	}
 	

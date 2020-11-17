@@ -88,4 +88,17 @@
 	</div>
 </div>
 </body>
+<script type="text/javascript">
+
+	let data = {key : value}; //body 에 들어갈 데이타
+	let send = fetch("URL", { //요청 보낼 주소
+		method: 'POST',
+		body: JSON.stringify(data), //데이타 json 파싱
+		headers:{
+			'Content-Type' : 'application/json' //타입 읽는 방식
+		}
+	}).then(response => response.json())
+	.then(response => console.log('Success:', JSON,stringify(response))) //성공
+	.catch(error => console.log('Error:',error)); //오류
+</script>
 </html>

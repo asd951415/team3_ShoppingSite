@@ -260,7 +260,9 @@
 	            let data = new Object() ;
 	             
 	            data.salePostnum = 1 ;
-	            data.id = $("#userid").val(); //아이디
+	            
+	            
+	            data.id = $("#userid").val(); //아이디 세션
 	            data.stars =$("#stars").val(); //별갯수
 	            data.content = $("#content").val(); //내용
 	             

@@ -31,10 +31,11 @@ public class lee2_AddReviewService implements ActionAjax {
 		String salePostnum = jsonBody.get("salePostnum").getAsString();
 		String content = jsonBody.get("content").getAsString();
 		int stars = jsonBody.get("stars").getAsInt();
-		String id=jsonBody.get("id").getAsString();
+//		String id=jsonBody.get("id").getAsString();
+		
 		System.out.println("중간");
-//		HttpSession session = request.getSession();
-//		String id = session.getId();
+		HttpSession session = request.getSession();
+		String id = session.getId();
 		DTOReview reivew = new DTOReview(Integer.parseInt(salePostnum), id, content, stars);
 		System.out.println(reivew);
 		resultRow=lee2_DAOReview.insertReview(reivew);

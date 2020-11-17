@@ -20,8 +20,7 @@ public class DTOReview {
 	}
 	
 	
-	public DTOReview(int revNum, int saleNum, String id, String revContent, int revStars, Date revCreatedAt) {
-		this.revNum = revNum;
+	public DTOReview(int saleNum, String id, String revContent, int revStars, Date revCreatedAt) {
 		this.saleNum = saleNum;
 		this.id = id;
 		this.revContent = revContent;

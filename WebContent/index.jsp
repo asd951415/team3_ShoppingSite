@@ -10,6 +10,8 @@
 index
 <input type="button" id="sendAjax" value="send ajax">
 <a href="mainPage.do">메인페이지</a>
+<br>
+<button id="btn">버튼</button>
 </body>
 <script>
 document.getElementById('sendAjax').addEventListener('click', async e => {
@@ -33,5 +35,23 @@ document.getElementById('sendAjax').addEventListener('click', async e => {
 	console.log(res.status)
 	console.log(res.text())
 });
+
+
+
+
+document.getElementById("btn").addEventListener("click", async e => {
+	let data = {"saleNum" : "1"}; //body 에 들어갈 데이타
+	console.log(data);		
+	let response = await fetch("member/reviewList.ajax", { //요청 보낼 주소
+		   method: 'POST',
+		   body: JSON.stringify(data), //데이타 json 파싱
+		   headers:{
+		      'Content-Type' : 'application/json' //타입 읽는 방식
+		   }
+		})
+	const jsonStr = await response.json();
+	console.log(jsonStr)
+});
+
 </script>
 </html>
