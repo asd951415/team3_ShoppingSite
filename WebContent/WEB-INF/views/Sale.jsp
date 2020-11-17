@@ -1,6 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -135,7 +137,8 @@
     </div>
 
     <!-- review -->
-    
+    <c:set var="data" value="<%=json %>"></c:set>
+    <c:forEach items="${list}"></c:forEach>
     <div class="review-container">
 
         <div class="tab-review">
@@ -295,10 +298,24 @@
 	        });
 		 })
 		 
-       
-
-
-
+		 document.getElementById("btn").addEventListener("click", async e => {
+				let data = {"saleNum" : "1"}; //body 에 들어갈 데이타
+				console.log(data);		
+				let response = await fetch("member/reviewList.ajax", { //요청 보낼 주소
+					   method: 'POST',
+					   body: JSON.stringify(data), //데이타 json 파싱
+					   headers:{
+					      'Content-Type' : 'application/json' //타입 읽는 방식
+					   }
+					})
+				const jsonStr = await response.json();
+				console.log(jsonStr);
+				
+			});
+		 for(let key in index){
+			 console.log(jsonStr[key]);
+		 }
+		 
 	});
 	
 </script>

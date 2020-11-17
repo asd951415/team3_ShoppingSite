@@ -17,6 +17,7 @@ import kr.or.bit.action.ActionAjax;
 import kr.or.bit.action.ActionAjaxData;
 import kr.or.bit.model.dao.lee2_DAOReview;
 import kr.or.bit.model.dto.DTOReview;
+import net.sf.json.JSON;
 
 public class ReviewListAjaxService implements ActionAjax{
 
@@ -45,9 +46,14 @@ public class ReviewListAjaxService implements ActionAjax{
 				 gson = new Gson() ;
 				 json = gson.toJson(list.get(i));
 				 jsonArray.add(json);
-			 }
-			
-	         ajaxData.setData(json);	           
+				 
+			 }	
+			   json = gson.toJson(jsonArray);
+			   System.out.println(json instanceof String);
+			   System.out.println(json instanceof Object);
+			   System.out.println(json);
+			  
+	         ajaxData.setData(json);	
 	     }else{
 	         ajaxData.setData("fail");
 

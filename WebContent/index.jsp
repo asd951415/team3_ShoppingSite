@@ -39,18 +39,30 @@ document.getElementById('sendAjax').addEventListener('click', async e => {
 
 
 
-document.getElementById("btn").addEventListener("click", async e => {
+document.getElementById("btn").addEventListener("click", async e => { //비동기
 	let data = {"saleNum" : "1"}; //body 에 들어갈 데이타
 	console.log(data);		
 	let response = await fetch("member/reviewList.ajax", { //요청 보낼 주소
 		   method: 'POST',
-		   body: JSON.stringify(data), //데이타 json 파싱
+		   body: JSON.stringify(data),
 		   headers:{
-		      'Content-Type' : 'application/json' //타입 읽는 방식
+		      'Content-Type' : 'application/json'
 		   }
-		})
-	const jsonStr = await response.json();
-	console.log(jsonStr)
+		});
+	const jsonStr = await response.json(); //응답 json 객체로 받기
+	console.log(jsonStr);
+	console.log(typeof(jsonStr));
+	
+	var test = new Array(); 
+	for(let i=0; i<7; i++){
+		test[i]=JSON.parse(jsonStr[i]); //객체 안에 있는 key 값 String -> Object 변환
+	}
+	
+	for(let i=0; i<7; i++){
+		console.log(test[i].rev_content); //key안에 있는 value 출력
+		// 여기서 뽑아온 값들을 html에다가 뿌리면 되요
+	}
+	
 });
 
 </script>
