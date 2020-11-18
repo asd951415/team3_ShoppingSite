@@ -25,7 +25,7 @@
 	                <tr class="addProductBtn_table">
 	                    <td>
 	                        <div class="addProductBtn">
-	                            <a href="/team3_ShoppingSite/seller/writeSalePage.do">
+	                            <a href="seller/writeSalePage.do">
 	                            	<button>판매글 게시하기</button>
 	                            </a>
 	                        </div>

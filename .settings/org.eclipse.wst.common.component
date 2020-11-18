@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?><project-modules id="moduleCoreId" project-version="1.5.0">
         
-    <wb-module deploy-name="team3_ShoppingSite">
+    <wb-module deploy-name="team3_Shopping">
                 
         <wb-resource deploy-path="/" source-path="/WebContent" tag="defaultRootSource"/>
                 
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
                 
-        <property name="java-output-path" value="/team3_ShoppingSite/build/classes"/>
+        <property name="java-output-path" value="/team3_Shopping/build/classes"/>
         <property name="context-root" value="/"/>
             
     </wb-module>

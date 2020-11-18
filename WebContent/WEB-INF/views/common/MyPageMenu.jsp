@@ -19,7 +19,7 @@
     <div class="sidenav">
         <a href="#about">회원정보</a>
         <br>
-        <a href="/team3_ShoppingSite/seller/InqPostList.ajax">문의글 관리</a>
+        <a href="seller/InqPostList.ajax">문의글 관리</a>
         <br>
         <a href="#clients">구매내역</a>
         <br>

@@ -112,27 +112,26 @@
 	    </div>
 	</c:if>
 
-    <!-- review -->
-	<form>
-		<div id="review" class="review-container">
-	
-		    <div class="tab-review">
-		        리뷰
-		    </div>
-		    
-		    <div class="score-review">
-		        <div class="score-letter">
-		           <input type ="text" id ="reviewInput" >
-		           <ul class="btn-reivew-items">
-		               <li class="btn-reivew-1">
-		                   <button id="reviewbtn" name="reviewbtn">리뷰등록</button>
-		               </li>
-		          </ul>
-		       </div>
-		   </div>
-	   </div>
-	</form>
-    <div>
+   <!-- review -->
+    <form>
+    <div id="review" class="review-container">
+        <div class="tab-review">
+            리뷰
+        </div>
+        
+        <div class="score-review">
+            <div class="score-letter">
+               <input type ="text" id ="reviewInput" >
+               <ul class="btn-reivew-items">
+                    <!-- <a href="member/purchasePage.do"> -->
+                    <li class="btn-reivew-1">
+                        <button id="reviewbtn" name="reviewbtn">리뷰등록</button>
+                    </li>
+            </div>
+     
+        </div>
+        </form>
+    
         <div class="review-content-contaier">
             
             <div class="user-score-id">
@@ -187,7 +186,7 @@
     
             </div>
     
-            <div class="write--time">
+            <div class="write—time">
                 2020.11.17
             </div>
     

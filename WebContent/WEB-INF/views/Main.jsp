@@ -20,7 +20,7 @@
     <!-- 상품리스트 -->
 	
     <div class="item-list-container">
-    	<a href="/team3_ShoppingSite/salePage.do">
+    	<a href="salePage.do">
    		  <div class="item">
             <img src="/team3_ShoppingSite/images/19309420_1598777941_image1_M.jpg" alt="">
             <div class="store-title">
@@ -41,7 +41,7 @@
 		<c:set var="salePostList" value='<%= request.getAttribute("salePostList") %>'/>
 		<c:forEach var="salePost" items="${ salePostList }" varStatus="index">
 			<c:if test="${salePost != null}">
-				<a href="/team3_ShoppingSite/salePage.do?saleNum=${ salePost.saleNum }">
+				<a href="salePage.do?saleNum=${ salePost.saleNum }">
 					 <div class="item">
 						<img src="/team3_ShoppingSite${ salePost.imageAddrs[0] }" alt="">
 						<div class="Product-saleTitle">
