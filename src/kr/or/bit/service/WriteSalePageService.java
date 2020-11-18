@@ -16,9 +16,9 @@ public class WriteSalePageService implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
 		ActionForward forward = new ActionForward();
 		
-//		int selNum = (int)request.getSession().getAttribute("sellerNum");
-//		List<DTOProduct> productList = DAOProduct.ryu_getProductListBySelNum(selNum);
-//		request.setAttribute("productList", productList);
+		int selNum = (Integer)request.getSession().getAttribute("sellerNum");
+		List<DTOProduct> productList = DAOProduct.ryu_getProductListBySelNum(selNum);
+		request.setAttribute("productList", productList);
 		
 		forward.setRedirect(false);
 		forward.setPath("WriteSale.jsp");

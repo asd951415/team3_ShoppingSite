@@ -1,12 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
-<link rel="stylesheet" href="<%=request.getContextPath() %>/css/ProductList.css">
+<link rel="stylesheet" href="/team3_ShoppingSite/css/ProductList.css">
 </head>
 <body>
 <div class="top_container">
@@ -16,7 +16,6 @@
 	<div class="sideBar_container">
 		<jsp:include page="./common/MyPageMenu.jsp"></jsp:include>
 	</div>
-	<c:set var="list" value="<%=request.getAttribute(name) %>"></c:set>
 	<div class=productList_container>
 		 <div class="productList_title">
         	<h1>상품목록</h1>
@@ -31,74 +30,33 @@
 	                            </a>
 	                        </div>
 	                    </td>
-	                    <td>
-	
-	                    </td>
-	                    <td>
-	
-	                    </td>
+	                    <td></td>
+	                    <td></td>
+	                    <td></td>
+	                    <td></td>
 	                </tr>
 	                <tr>
-	                    <th>상품이미지</th>
-	                    <th>재고</th>
+	                    <th>상품명</th>
 	                    <th>가격</th>
+	                    <th>사이즈</th>
+	                    <th>재고</th>
+	                    <th>설명</th>
 	                </tr>
-	                <tr>
-	                    <td>
-	                        <div class="pd_info_wrap">
-	                            <div class="pd_info_img">
-	                                <img src="/images/다운로드 (1).jpg" alt="">
-	                            </div>
-	                            <div class="pd_info_detail">
-	                                <ul>
-	                                    <div class="pd_title">
-	                                        <li>상품명</li>
-	                                        <li>슬랙스7부바지</li>
-	                                    </div>
-	                                </ul>
-	                            </div>
-	                        </div>
-	                    </td>
-	                    <td>20개</td>
-	                    <td>30000</td>
-	                </tr>
-	                <tr>
-	                    <td>
-	                        <div class="pd_info_wrap">
-	                            <div class="pd_info_img">
-	                                <img src="/images/다운로드 (1).jpg" alt="">
-	                            </div>
-	                            <div class="pd_info_detail">
-	                                <ul>
-	                                    <div class="pd_title">
-	                                        <li>상품명</li>
-	                                        <li>슬랙스7부바지</li>
-	                                    </div>
-	                                </ul>
-	                            </div>
-	                        </div>
-	                    </td>
-	                    <td>20개</td>
-	                    <td>30000</td>
-	                </tr>
-	
+	                <c:set var="productList" value='<%= request.getAttribute("productList") %>'/>
+					<c:forEach var="product" items="${ productList }" varStatus="index">
+						<c:if test="${product != null}">
+							 <tr>
+			                	<td>${ product.pName }</td>
+			                    <td>${ product.pPrice }</td>
+			                    <td>${ product.pSize }</td>
+			                    <td>${ product.pAmount }</td>
+			                    <td>${ product.pDescription }</td>
+			                </tr>
+						</c:if> 
+					</c:forEach>
 	            </table>
 	        </div>
-   
 	</div>
 </div>
 </body>
-<script type="text/javascript">
-
-	let data = {key : value}; //body 에 들어갈 데이타
-	let send = fetch("URL", { //요청 보낼 주소
-		method: 'POST',
-		body: JSON.stringify(data), //데이타 json 파싱
-		headers:{
-			'Content-Type' : 'application/json' //타입 읽는 방식
-		}
-	}).then(response => response.json())
-	.then(response => console.log('Success:', JSON,stringify(response))) //성공
-	.catch(error => console.log('Error:',error)); //오류
-</script>
 </html>

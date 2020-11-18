@@ -1,26 +1,24 @@
 package kr.or.bit.service;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.JsonArray;
+
 import kr.or.bit.action.Action;
 import kr.or.bit.action.ActionForward;
-import kr.or.bit.model.dao.DAOSalePost;
-import kr.or.bit.model.dto.DTOSalePost;
 
-public class MainPageService implements Action {
-
+public class InqPostListPageService implements Action{
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
+		System.out.println("inqpostlist");
 		ActionForward forward = new ActionForward();
 		
-		List<DTOSalePost> salePostList = DAOSalePost.getSalePostListDesc();
-		request.setAttribute("salePostList", salePostList);
+		JsonArray PdInqPost = (JsonArray)request.getAttribute("jsonBody");
+		request.setAttribute("DTOPdInqPost", PdInqPost);
 		
 		forward.setRedirect(false);
-		forward.setPath("Main.jsp");
+		forward.setPath("InqPostListPage.jsp");
 		
 		return forward;
 	}

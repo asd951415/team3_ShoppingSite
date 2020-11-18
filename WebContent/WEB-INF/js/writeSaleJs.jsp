@@ -24,13 +24,7 @@ let editor;
 				}
 			} )
 			/*.then( editor => {
-				console.log('editor')
 				//editor.setData('<p>aaa</p>')
-				editor1 = editor
-				editor.model.document.on('change:data', () => {
-					console.log('data changed')
-				})
-				//$('style').append('.ck-content { min-height: ' + $('textarea[name="content"]').height() + 'px !important; }');
 			})*/
 			.catch( error => {
 			    console.error( error );
@@ -40,11 +34,6 @@ let editor;
 					})*/
 	
 })()
-/*
-document.getElementById('dd').addEventListener('click', e => {
-	console.log(editor1.getData())
-})
-*/
 
 const uploadeImageArr = [];
 
@@ -59,10 +48,8 @@ function setThumbnail(event) {
 	    reader.addEventListener('load', event => {
 	      var img = document.createElement("img");
 	      img.setAttribute("src", event.target.result);
-	      console.log(document.getElementsByClassName('thumbnail')[uploadeImageArr.length - 1])
 	      document.getElementsByClassName('thumbnail')[uploadeImageArr.length - 1].appendChild(img);
 	    })
-		console.log(image);
 		reader.readAsDataURL(image);
 	}
 }
@@ -72,7 +59,46 @@ document.getElementById('uploadFile').addEventListener('change', setThumbnail)
 const writeSale = document.getElementById('writeSale')
 
 writeSale.addEventListener('click', async e => {
-  console.log('click')
+  const titleInput = document.getElementById('titleInput')
+  const categoryInput = document.getElementById('categoryInput')
+  const products = document.getElementsByName('product')
+  const pNums = [];
+  for(let i = 0; i < products.length; i++){
+    if(products[i].checked){
+      pNums.push(products[i].value)
+    }
+  }
+  const title = titleInput.value
+  const content = editor.getData()
+  const categoryNum = categoryInput.options[categoryInput.selectedIndex].value
+  
+  const data = new FormData();
+  data.append('title', title)
+  data.append('content', content)
+  data.append('categoryNum', categoryNum)
+  data.append('pNums', pNums)
+  for(let i = 0; i < uploadeImageArr.length; i++){
+    data.append(uploadeImageArr[i].name, uploadeImageArr[i]);
+  }
+
+  const res = await fetch('/team3_ShoppingSite/seller/writeSale.ajax', {
+		method: 'post',
+		body: data
+	});
+	const status = res.status
+  if(status === 200){
+    const result = await res.text()
+    if(result ==='success'){
+      alert('판매글 등록 완료')
+      location.href = '/team3_ShoppingSite/member/myPage.do'
+    } else {
+      alert('판매글 등록 실패. 정보를 올바르게 입력했는지 다시 확인하세요.')
+    }
+  } else if(status == 404){
+    alert('해당 요청을 찾을 수 없습니다.')
+  } else {
+    alert('서버 에러: 관리자에게 문의하십시오.')
+  }
 })
 
 /*

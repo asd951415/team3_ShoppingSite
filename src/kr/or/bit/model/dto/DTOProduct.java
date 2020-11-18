@@ -11,6 +11,15 @@ public class DTOProduct {
 	
 	public DTOProduct() {}
 	
+	public DTOProduct(int selNum, String pName, int pPrice, String pSize, int pAmount, String pDescription) {
+		this.selNum = selNum;
+		this.pName = pName;
+		this.pPrice = pPrice;
+		this.pSize = pSize;
+		this.pAmount = pAmount;
+		this.pDescription = pDescription;
+	}
+	
 	public DTOProduct(int pNum, int selNum, String pName, int pPrice, String pSize, int pAmount, String pDescription) {
 		this.pNum = pNum;
 		this.selNum = selNum;

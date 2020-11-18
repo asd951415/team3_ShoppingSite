@@ -15,26 +15,21 @@ public class RegistSellerAjaxService implements ActionAjax {
     @Override
     public ActionAjaxData execute(HttpServletRequest request, HttpServletResponse response) {
         ActionAjaxData ajaxData = new ActionAjaxData();
+        
         JsonObject body = (JsonObject) request.getAttribute("jsonBody");
-        String id = body.get("id").getAsString();
-        String pwd = body.get("pwd").getAsString();
-
-        DTOMember dtoMember = DAOMember.getMemberById(id);
-        DAOMember daoMember = new DAOMember();
-        DAOSeller daoSeller = new DAOSeller();
-        DTOSeller dtoSeller = new DTOSeller();
-        if (dtoMember.getId() == id) {
-            if (pwd == dtoMember.getPwd()) {
-
-                daoSeller.lim_registSeller(dtoSeller);
-                //sel_flag 'N' -> 'Y'
-                daoMember.lim_RegistSeller(id);
-                ajaxData.setData("success");
-
-            }
+        String selEmail = body.get("email").getAsString();
+        int selRegistNum = body.get("registNum").getAsInt();
+        String selAccount = body.get("account").getAsString();
+        String id = (String)request.getSession().getAttribute("memberId");
+        
+        DTOSeller seller = new DTOSeller(id, selEmail, selRegistNum, selAccount);
+        int resultRow = DAOSeller.lim_registSeller(seller);
+        if(resultRow == 1) {
+        	resultRow = DAOMember.lim_RegistSeller(id);
+        	if(resultRow == 1) ajaxData.setData("success");
+        	else ajaxData.setData("fail");
         } else {
-            ajaxData.setData("fail");
-
+        	ajaxData.setData("fail");
         }
         ajaxData.setContentType("text/plain");
 

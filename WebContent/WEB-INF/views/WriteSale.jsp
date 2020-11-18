@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -54,13 +55,29 @@
 	<!-- 
 	 <button id="dd">dd</button>	
 	 -->
-	제목<input type="text" id="titleInput">
-	카테고리<select name="categoryInput">
-		<option value="61">TOP</option>
-		<option value="62">PANTS</option>
-		<option value="63">OUTER</option>
-		<option value="64">ETC</option>
-	</select>
+	<div>
+		제목<input type="text" id="titleInput">
+	</div>
+	<div>
+		카테고리<select id="categoryInput">
+			<option value="30">TOP</option>
+			<option value="31">PANTS</option>
+			<option value="32">OUTER</option>
+			<option value="33">ETC</option>
+		</select>
+	</div>
+	<c:set var="productList" value='<%= request.getAttribute("productList") %>'/>
+	<div>
+		판매할 상품
+		<c:forEach var="product" items="${ productList }" varStatus="index">
+		<c:if test="${product != null}">
+			<label>
+				<input type="checkbox" name="product" value="${ product.pNum }">${ product.pName }
+			</label>
+		</c:if> 
+	</c:forEach>
+	</div>
+	
 	<button id="writeSale">작성</button>
 	<div class="editorContainer">
 		<div id="editor" class="_editor"></div>	

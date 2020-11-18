@@ -15,7 +15,7 @@ import kr.or.bit.model.dto.DTOSalePost;
 public class DAOSalePost {
 	private static DBManager instance = DBManager.getInstance();
 	
-	private static final String SQL_SELECT_SALEPOSTS_BY_CATEGORY = "SELECT * FROM SALE_POST WHERE CATEGORY_NUM = ? ORDER BY CATEGORY_NUM DESC";
+	private static final String SQL_SELECT_SALEPOSTS_BY_CATEGORY = "SELECT * FROM SALE_POST WHERE CATEGORY_NUM = ? ORDER BY SALE_CREATED_AT DESC";
 	private static final String SQL_SELECT_IMAGES_BY_SALE_NUM = "SELECT IMAGE_ADR FROM IMAGES WHERE SALE_NUM = ?";
 	private static final String SQL_SELECT_SALEPOST_BY_SALE_NUM = "SELECT * FROM SALE_POST WHERE SALE_NUM = ?";
 	private static final String SQL_SELECT_SALEPOSTS_BY_SEL_NUM = "SELECT * FROM SALE_POST WHERE SEL_NUM = ?";
@@ -23,6 +23,8 @@ public class DAOSalePost {
 															+ "VALUES(?, ?, ?, ?)";
 	private static final String ryu_SQL_SELECT_LAST_ROW_FROM_SALE_POST_BY_SEL_NUM = 
 			"SELECT * FROM (SELECT * FROM SALE_POST WHERE SEL_NUM = ? ORDER BY SALE_NUM DESC) WHERE ROWNUM = 1";
+	private static final String ryu_SELECT_ALL_ORDER_BY_CREATED_AT_DESC = "SELECT * FROM SALE_POST ORDER BY SALE_CREATED_AT DESC";
+	private static final String ryu_SELECT_P_NUM_FROM_PD_SALE_POST = "SELECT P_NUM FROM PD_SALE_POST WHERE SALE_NUM = ?";
 	
 	private static String ryu_getInsertAllPdSalePostQuery(int length) {
 		String insertQuery = "INSERT INTO PD_SALE_POST(SALE_NUM, P_NUM) ";
@@ -42,6 +44,28 @@ public class DAOSalePost {
 		}
 		
 		return insertQuery + selectFronDual;
+	}
+	
+	public static List<DTOSalePost> getSalePostListDesc(){
+		List<DTOSalePost> salePostList = new ArrayList<DTOSalePost>();
+		Connection conn = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			conn = instance.getConnection();
+			pstmt = conn.prepareStatement(ryu_SELECT_ALL_ORDER_BY_CREATED_AT_DESC);
+			rs = pstmt.executeQuery();
+			while(rs.next()) {
+				DTOSalePost salePost = DAOSalePost.setDTOSalePost(rs);
+				DAOSalePost.setDTOSalePostImages(salePost, conn);
+				salePostList.add(salePost);
+			}
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			instance.freeConnection(conn, pstmt, rs);
+		}
+		return salePostList;
 	}
 	
 	public static List<DTOSalePost> getSalePostListByCategory(int categoryNum){
@@ -80,6 +104,7 @@ public class DAOSalePost {
 			while(rs.next()) {
 				salePost = DAOSalePost.setDTOSalePost(rs);
 				DAOSalePost.setDTOSalePostImages(salePost, conn);
+				DAOSalePost.setDTOSalePostPNums(salePost, conn);
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -133,6 +158,7 @@ public class DAOSalePost {
 			pstmt = conn.prepareStatement(ryu_SQL_SELECT_LAST_ROW_FROM_SALE_POST_BY_SEL_NUM);
 			pstmt.setInt(1, salePost.getSelNum());
 			rs = pstmt.executeQuery();
+			rs.next();
 			int saleNum = rs.getInt("SALE_NUM");
 			
 			List<Integer> pNums = salePost.getpNums();
@@ -204,6 +230,27 @@ public class DAOSalePost {
 				imageAddrs.add(imageAdr);
 			}
 			salePost.setImageAddrs(imageAddrs);
+		} catch(SQLException e) {
+			e.printStackTrace();
+		} finally {
+			instance.freeConnection(pstmt);
+			instance.freeConnection(rs);
+		}
+	}
+	
+	private static void setDTOSalePostPNums(DTOSalePost salePost, Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		try {
+			pstmt = conn.prepareStatement(ryu_SELECT_P_NUM_FROM_PD_SALE_POST);
+			pstmt.setInt(1, salePost.getSaleNum());
+			rs = pstmt.executeQuery();
+			List<Integer> pNums = new ArrayList<Integer>();
+			while(rs.next()) {
+				int pNum = rs.getInt("P_NUM");
+				pNums.add(pNum);
+			}
+			salePost.setpNums(pNums);
 		} catch(SQLException e) {
 			e.printStackTrace();
 		} finally {

@@ -15,13 +15,14 @@ public class SaleListPageService implements Action {
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) {
 		ActionForward forward = new ActionForward();
+		System.out.println("SaleListPageService");
 		
-		int selNum = (int)request.getSession().getAttribute("sellerNum");
+		int selNum = (Integer)request.getSession().getAttribute("sellerNum");
 		List<DTOSalePost> salePostList = DAOSalePost.ryu_getSalePostListBySelNum(selNum);
 		request.setAttribute("salePostList", salePostList);
 		
 		forward.setRedirect(false);
-		forward.setPath("SaleListPage.jsp");
+		forward.setPath("SaleList.jsp");
 		
 		return forward;
 	}

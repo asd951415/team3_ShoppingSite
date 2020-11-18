@@ -13,7 +13,7 @@
 
 <div class="ProductAdd_container">
 	상품명<input type="text" id="pNameInput">
-	가격<input type="text" id="pPriceInput">
+	가격<input type="text" id="pPriceInput" onkeypress="inNumber()">
 	<!-- 사이즈<input type="text" id="pSizeInput"> -->
 	사이즈<select id="pSizeInput">
 		<option value="F">F</option>
@@ -21,7 +21,7 @@
 		<option value="M">M</option>
 		<option value="L">L</option>
 	</select>
-	수량<input type="text" id="pAmountInput">
+	수량<input type="text" id="pAmountInput" onkeypress="inNumber()">
 	상품설명<input type="text" id="pDescInput">
 	<button id="addProductBtn">상품등록</button>
 </div>

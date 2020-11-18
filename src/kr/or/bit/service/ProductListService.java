@@ -1,14 +1,14 @@
 package kr.or.bit.service;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.google.gson.JsonArray;
-
 import kr.or.bit.action.Action;
 import kr.or.bit.action.ActionForward;
-import kr.or.bit.model.dao.DAOSeller;
-import kr.or.bit.model.dto.DTOSeller;
+import kr.or.bit.model.dao.DAOProduct;
+import kr.or.bit.model.dto.DTOProduct;
 
 public class ProductListService implements Action{
 	@Override
@@ -16,11 +16,9 @@ public class ProductListService implements Action{
 		System.out.println("ProductListService");
 		ActionForward forward = new ActionForward();
 		
-//		int selNum = (int)request.getSession().getAttribute("sellerNum");
-//		DTOSeller seller = DAOSeller.ryu_getSellerBySelNum(selNum);
-	
-		DTOSeller seller = new DTOSeller(1, "seller", "aaaa@naver.com", 2, "222-222");
-		request.setAttribute("seller", seller);
+		int selNum = (Integer)request.getSession().getAttribute("sellerNum");
+		List<DTOProduct> productList = DAOProduct.ryu_getProductListBySelNum(selNum);
+		request.setAttribute("productList", productList);
 		
 		forward.setRedirect(false);
 		forward.setPath("ProductListPage.jsp");

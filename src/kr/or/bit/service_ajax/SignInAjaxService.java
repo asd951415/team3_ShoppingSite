@@ -43,7 +43,7 @@ public class SignInAjaxService implements ActionAjax {
             	session.setAttribute("sellerNum", seller.getSelNum());            	
             }
             
-            session.setMaxInactiveInterval(15 * 60);
+            session.setMaxInactiveInterval(60 * 60);
             ajaxData.setData("success");
 		}
 		ajaxData.setContentType("text/plain");

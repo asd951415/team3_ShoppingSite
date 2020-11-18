@@ -1,6 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -12,8 +11,6 @@
 <div class="top_container">
 	<jsp:include page="./common/MyPageTop.jsp"></jsp:include>
 </div>
-
-
 <div class="sideBar_content_container">
 	<div class="sideBar_container">
 		<jsp:include page="./common/MyPageMenu.jsp"></jsp:include>
@@ -76,17 +73,28 @@
     </div>
 
 </div>
-</body>
-<script type="text/javascript">
+ 
 
-	fetch("seller/InqPostList.ajax")
-		.then(function(response) {
-			return response.json();
-		})
-		.then(function(json){
-			console.log(JSON.stringify(json));
-		})
-		
-	});
-</script>
+<!--  
+<div class="inqlist" max-width="1200px", max-height="960px">사이드바 인클루드-->
+<!--  
+<tbody>
+<c:set var="list" value="${requestScope.list}"/>
+<c:forEach var="list2" items="${list}">
+<tr onmouseover="this.style.backgroundColor='gray'" onmouseout="this.style.backgroundColor='white'">
+-->
+<!--
+Inqnum salenum inqtitle inqcontent inqcreatedat
+-->
+<!--  
+<td>${list2.inqnum}</td>
+<td>${list2.salenum}</td>
+<td>${list2.inqtitle}</td>
+<td>${list2.inqcontent}</td>
+</tr>
+</c:forEach>
+</tbody>
+<div>
+-->
+</body>
 </html>

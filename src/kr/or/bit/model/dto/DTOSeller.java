@@ -16,7 +16,13 @@ public class DTOSeller {
 		this.selRegistNum = selRegistNum;
 		this.selAccount = selAccount;
 	}
-
+	
+	public DTOSeller(String id, String selEmail, int selRegistNum, String selAccount) {
+		this.id = id;
+		this.selEmail = selEmail;
+		this.selRegistNum = selRegistNum;
+		this.selAccount = selAccount;
+	}
 
 	public int getSelNum() {
 		return selNum;

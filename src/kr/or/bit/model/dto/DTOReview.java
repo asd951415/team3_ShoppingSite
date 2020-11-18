@@ -12,15 +12,8 @@ public class DTOReview {
 	
 	public DTOReview() {}
 	
-	public DTOReview(int saleNum, String id, String revContent, int revStars) {	
-		this.saleNum = saleNum;
-		this.id = id;
-		this.revContent = revContent;
-		this.revStars = revStars;
-	}
-	
-	
-	public DTOReview(int saleNum, String id, String revContent, int revStars, Date revCreatedAt) {
+	public DTOReview(int revNum, int saleNum, String id, String revContent, int revStars, Date revCreatedAt) {
+		this.revNum = revNum;
 		this.saleNum = saleNum;
 		this.id = id;
 		this.revContent = revContent;

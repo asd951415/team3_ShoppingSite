@@ -18,6 +18,7 @@ function makeElement(rootEl, className, content){
     rootEl.appendChild(div)
 }
 
+/*
 btn.addEventListener('click', e => {
     const div = document.createElement("div")
     div.className ="item"
@@ -32,4 +33,6 @@ btn.addEventListener('click', e => {
     categoryContent.appendChild(div)
 
 })
+*/
+
 </script>
