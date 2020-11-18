@@ -7,11 +7,11 @@ import com.google.gson.JsonObject;
 
 import kr.or.bit.action.ActionAjax;
 import kr.or.bit.action.ActionAjaxData;
-import kr.or.bit.model.dao.lee2_DAOPdInqPost;
+import kr.or.bit.model.dao.DAOPdInqPost;
 import kr.or.bit.model.dto.DTOPdInqPost;
 
 
-public class lee2_EditInquirySerivce implements ActionAjax{
+public class EditInquirySerivce implements ActionAjax{
 
 	@Override
 	public ActionAjaxData execute(HttpServletRequest request, HttpServletResponse response) {
@@ -29,7 +29,7 @@ public class lee2_EditInquirySerivce implements ActionAjax{
 		String private_flag = jsonBody.get("private").getAsString();
 		
 		DTOPdInqPost post = new DTOPdInqPost();
-		lee2_DAOPdInqPost.updateInqPost(title, content, private_flag, inqNum);
+		DAOPdInqPost.updateInqPost(title, content, private_flag, inqNum);
 		
 		if(title != null && content != null) ajaxData.setData("success");
 		else ajaxData.setData("fail");

@@ -18,21 +18,21 @@
 <c:set var="id" value='<%= (String)session.getAttribute("memberId") %>'/>
 <div class="category-container">
     <ul class="category-menu">
-        <li class="category-menu-item"><a href ="/team3_ShoppingSite/mainPage.do">HOME</a></li>
+        <li class="category-menu-item"><a href ="mainPage.do">HOME</a></li>
         
-        <li class="category-menu-item"><a href ="/team3_ShoppingSite/category.do?categoryNum=61">TOP</a></li>
-        <li class="category-menu-item"><a href ="/team3_ShoppingSite/category.do?categoryNum=62">PANTS</a></li>
-        <li class="category-menu-item"><a href ="/team3_ShoppingSite/category.do?categoryNum=63">OUTER</a></li>
-        <li class="category-menu-item"><a href ="/team3_ShoppingSite/category.do?categoryNum=64">ETC</a></li>
-        <li class="category-menu-item"><a href="/team3_ShoppingSite/member/cart.do">CART</a></li>
-        <li class="category-menu-item"><a href ="/team3_ShoppingSite/member/myPage.do">MYPAGE</a></li>
+        <li class="category-menu-item"><a href ="category.do?categoryNum=61">TOP</a></li>
+        <li class="category-menu-item"><a href ="category.do?categoryNum=62">PANTS</a></li>
+        <li class="category-menu-item"><a href ="category.do?categoryNum=63">OUTER</a></li>
+        <li class="category-menu-item"><a href ="category.do?categoryNum=64">ETC</a></li>
+        <li class="category-menu-item"><a href="cart.do">CART</a></li>
+        <li class="category-menu-item"><a href ="myPage.do">MYPAGE</a></li>
         <li class="category-menu-item">
         <c:choose>
        		<c:when test="${id == null}">
-            	<a href="/team3_ShoppingSite/signInPage.do">SIGN IN</a></li>
+            	<a href="signInPage.do">SIGN IN</a></li>
             </c:when>
             <c:otherwise>
-            	<a href="/team3_ShoppingSite/signOut.do">SIGN OUT</a></li>
+            	<a href="signOut.do">SIGN OUT</a></li>
             </c:otherwise>
         </c:choose>
     </ul>

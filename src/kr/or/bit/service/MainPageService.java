@@ -21,7 +21,7 @@ public class MainPageService implements Action {
 		
 		forward.setRedirect(false);
 		forward.setPath("Main.jsp");
-		
+		System.out.println("mainService");
 		return forward;
 	}
 

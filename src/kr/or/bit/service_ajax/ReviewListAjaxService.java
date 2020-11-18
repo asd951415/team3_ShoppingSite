@@ -15,7 +15,7 @@ import com.google.gson.JsonParser;
 
 import kr.or.bit.action.ActionAjax;
 import kr.or.bit.action.ActionAjaxData;
-import kr.or.bit.model.dao.lee2_DAOReview;
+import kr.or.bit.model.dao.DAOReview;
 import kr.or.bit.model.dto.DTOReview;
 import net.sf.json.JSON;
 
@@ -27,7 +27,7 @@ public class ReviewListAjaxService implements ActionAjax{
 		List<Map<String, Object>> list =new ArrayList<Map<String,Object>>();
 		ActionAjaxData ajaxData = new ActionAjaxData();
 		DTOReview dtoReview = new DTOReview();
-		lee2_DAOReview daoReview = new lee2_DAOReview();
+		DAOReview daoReview = new DAOReview();
 		JsonArray jsonArray = new JsonArray();
 		JsonObject body = (JsonObject) request.getAttribute("jsonBody");
 		Gson gson = null;

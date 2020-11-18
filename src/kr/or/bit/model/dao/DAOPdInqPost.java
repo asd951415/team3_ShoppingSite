@@ -18,7 +18,7 @@ import kr.or.bit.model.dto.DTOInqAnsPost;
 import kr.or.bit.model.dto.DTOPdInqPost;
 import kr.or.bit.model.dto.DTOProduct;
 
-public class lee2_DAOPdInqPost {
+public class DAOPdInqPost {
 	private static DBManager instance = DBManager.getInstance();
 	private static final String SQL_SELECT_PDINQPOST = "SELECT * FROM PD_INQ_POST";
 	private static final String SQL_SELECT_PDINQPOST_BY_INQ_NUM = "SELECT * FROM PD_INQ_POST WHERE INQ_NUM = ?";
@@ -42,7 +42,7 @@ public class lee2_DAOPdInqPost {
 			pstmt.setInt(1, inqPost.getInqNum());
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				inqPost = lee2_DAOPdInqPost.setDTOInqAnsPost(rs);
+				inqPost = DAOPdInqPost.setDTOInqAnsPost(rs);
 				
 			}
 		} catch(SQLException e) {
@@ -88,8 +88,8 @@ public class lee2_DAOPdInqPost {
 		String inqTitle = rs.getString("inq_title");
 		String inqContent = rs.getString("inq_content").trim();
 		char inqPrivate = (char) rs.getInt("inq_private_flag");
-		
-		DTOPdInqPost inqPost = new DTOPdInqPost(inqNum, saleNum, id, inqTitle, inqContent, inqPrivate);
+		Date inqDate = (Date) rs.getDate("inq_created_date");
+		DTOPdInqPost inqPost = new DTOPdInqPost(inqNum, saleNum, id, inqTitle, inqContent, inqPrivate , inqDate);
 		
 		return inqPost;
 	}

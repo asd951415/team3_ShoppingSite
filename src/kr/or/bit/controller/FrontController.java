@@ -37,12 +37,23 @@ public class FrontController extends HttpServlet {
 		actionList = new HashMap<String, Action>();
 		
 		actionList.put("/mainPage.do", new MainPageService());
+		actionList.put("/mainPage.do", new MainPageService());
 		actionList.put("/signUpPage.do", new SignUpPageService());
 		actionList.put("/signUp.do", new SignUpService());
 		actionList.put("/signInPage.do", new SignInPageService());
 		actionList.put("/signOut.do", new SignOutService());
-		actionList.put("/category.do", new CategoryPageService());
+		actionList.put("category.do", new CategoryPageService());
 		actionList.put("/salePage.do", new SalePageService());
+		
+		actionList.put("/member/mainPage.do", new MainPageService());
+		actionList.put("/member/mainPage.do", new MainPageService());
+		actionList.put("/member/signUpPage.do", new SignUpPageService());
+		actionList.put("/member/signUp.do", new SignUpService());
+		actionList.put("/member/signInPage.do", new SignInPageService());
+		actionList.put("/member/signOut.do", new SignOutService());
+		actionList.put("/member/category.do", new CategoryPageService());
+		actionList.put("/member/salePage.do", new SalePageService());
+		
 		actionList.put("/member/cart.do", new CartPageService());
 		actionList.put("/member/purchasePage.do", new PurchasePageService());
 		actionList.put("/member/purchasedPage.do", new PurchasedPageService());

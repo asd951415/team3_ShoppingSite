@@ -9,15 +9,24 @@ public class DTOPdInqPost {
 	private String inqTitle;
 	private String inqContent;
 	private Date inqCreatedAt;
-	
+	private char inqPrivate;
 	public DTOPdInqPost() {}
 	
-	public DTOPdInqPost(int inqNum, int saleNum, String id, String inqTitle, String inqContent, Date inqCreatedAt) {
+	public DTOPdInqPost(int saleNum, String id, String inqTitle, String inqContent,char inqPrivate) {
+		this.saleNum = saleNum;
+		this.id = id;
+		this.inqTitle = inqTitle;
+		this.inqContent = inqContent;
+		this.inqPrivate = inqPrivate;
+	}
+	
+	public DTOPdInqPost(int inqNum, int saleNum, String id, String inqTitle, String inqContent,char inqPrivate, Date inqCreatedAt) {
 		this.inqNum = inqNum;
 		this.saleNum = saleNum;
 		this.id = id;
 		this.inqTitle = inqTitle;
 		this.inqContent = inqContent;
+		this.inqPrivate = inqPrivate;
 		this.inqCreatedAt = inqCreatedAt;
 	}
 
@@ -68,5 +77,14 @@ public class DTOPdInqPost {
 	public void setInqCreatedAt(Date inqCreatedAt) {
 		this.inqCreatedAt = inqCreatedAt;
 	}
+
+	public char getInqPrivate() {
+		return inqPrivate;
+	}
+
+	public void setInqPrivate(char inqPrivate) {
+		this.inqPrivate = inqPrivate;
+	}
+	
 	
 }

@@ -15,7 +15,7 @@ import kr.or.bit.model.DBManager;
 import kr.or.bit.model.dto.DTOReview;
 import kr.or.bit.model.dto.DTOSalePost;
 
-public class lee2_DAOReview {
+public class DAOReview {
 	private static DBManager instance = DBManager.getInstance();
 	
 	private static final String SQL_SELECT_REVIEW_BY_REV_NUM = "SELECT * FROM REVIEW WHERE REV_NUM = ?";
@@ -40,8 +40,9 @@ public class lee2_DAOReview {
 			
 			rs = pstmt.executeQuery();
 			while(rs.next()) {
-				reivew = lee2_DAOReview.setDTOReview(rs);
+				reivew = DAOReview.setDTOReview(rs);
 				map = new HashedMap();
+				map.put("rev_num",reivew.getRevNum());
 				map.put("sale_num",reivew.getSaleNum());
 				map.put("rev_content", reivew.getRevContent());
 				map.put("rev_stars", reivew.getRevStars());
@@ -89,7 +90,7 @@ public class lee2_DAOReview {
 			rs = pstmt.executeQuery();
 			resultRow = pstmt.executeUpdate();
 			while(rs.next()) {
-				reivew = lee2_DAOReview.setDTOReview(rs);
+				reivew = DAOReview.setDTOReview(rs);
 			}
 		} catch(SQLException e) {
 			e.printStackTrace();
@@ -123,12 +124,13 @@ public class lee2_DAOReview {
 	
 	
 	private static DTOReview setDTOReview(ResultSet rs) throws SQLException {
+		int rev_num = rs.getInt("rev_num");
 		int sale_num = rs.getInt("SALE_NUM");
 		String id = rs.getString("ID");
 		String rev_content = rs.getString("REV_CONTENT").trim();
 		int rev_stars = rs.getInt("REV_STARS");
 		Date rev_created_at = rs.getDate("rev_created_at");
-		DTOReview review = new DTOReview(sale_num, id, rev_content, rev_stars,rev_created_at);
+		DTOReview review = new DTOReview(rev_num,sale_num, id, rev_content, rev_stars,rev_created_at);
 		return review;
 	}
 	

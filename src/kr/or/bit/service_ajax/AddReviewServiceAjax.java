@@ -10,11 +10,11 @@ import com.google.gson.JsonObject;
 
 import kr.or.bit.action.ActionAjax;
 import kr.or.bit.action.ActionAjaxData;
-import kr.or.bit.model.dao.lee2_DAOReview;
+import kr.or.bit.model.dao.DAOReview;
 import kr.or.bit.model.dto.DTOReview;
 
 
-public class lee2_AddReviewService implements ActionAjax {
+public class AddReviewServiceAjax implements ActionAjax {
 
 	@Override
 	public ActionAjaxData execute(HttpServletRequest request, HttpServletResponse response) {
@@ -38,7 +38,7 @@ public class lee2_AddReviewService implements ActionAjax {
 		String id = session.getId();
 		DTOReview reivew = new DTOReview(Integer.parseInt(salePostnum), id, content, stars);
 		System.out.println(reivew);
-		resultRow=lee2_DAOReview.insertReview(reivew);
+		resultRow=DAOReview.insertReview(reivew);
 		
 		
 		if(resultRow == 1) ajaxData.setData("success");

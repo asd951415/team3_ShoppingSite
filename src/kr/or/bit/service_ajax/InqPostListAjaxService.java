@@ -15,7 +15,7 @@ import kr.or.bit.action.ActionAjax;
 import kr.or.bit.action.ActionAjaxData;
 import kr.or.bit.action.ActionForward;
 import kr.or.bit.model.dao.DAOInquiryPost;
-import kr.or.bit.model.dao.lee2_DAOReview;
+import kr.or.bit.model.dao.DAOReview;
 import kr.or.bit.model.dto.DTOInqAnsPost;
 import kr.or.bit.model.dto.DTOPdInqPost;
 import kr.or.bit.model.dto.DTOReview;

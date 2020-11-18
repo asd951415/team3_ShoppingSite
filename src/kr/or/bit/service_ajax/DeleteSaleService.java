@@ -1,3 +1,4 @@
+package kr.or.bit.service_ajax;
 //package kr.or.bit.service_ajax;
 //
 //import javax.servlet.http.HttpServletRequest;

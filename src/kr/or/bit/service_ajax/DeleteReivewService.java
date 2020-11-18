@@ -6,10 +6,10 @@ import javax.servlet.http.HttpServletResponse;
 import kr.or.bit.action.ActionAjax;
 import kr.or.bit.action.ActionAjaxData;
 import kr.or.bit.model.dao.DAOSalePost;
-import kr.or.bit.model.dao.lee2_DAOReview;
+import kr.or.bit.model.dao.DAOReview;
 import kr.or.bit.model.dto.DTOSalePost;
 
-public class lee2_DeleteReivewService implements ActionAjax {
+public class DeleteReivewService implements ActionAjax {
 
 	@Override
 	public ActionAjaxData execute(HttpServletRequest request, HttpServletResponse response) {
@@ -18,7 +18,7 @@ public class lee2_DeleteReivewService implements ActionAjax {
 		int resultRow =0;
 		
 		if(resultRow == 1) {
-			lee2_DAOReview.delete(Integer.parseInt(saleNum));
+			DAOReview.delete(Integer.parseInt(saleNum));
 			ajaxData.setData("success");
 		} else {
 			ajaxData.setData("fail");

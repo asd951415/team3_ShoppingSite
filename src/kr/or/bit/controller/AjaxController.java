@@ -37,6 +37,8 @@ public class AjaxController extends HttpServlet {
 		
 		actionList.put("/idCheck.ajax", new IdCheckAjaxService());
 		actionList.put("/signIn.ajax", new SignInAjaxService());
+		actionList.put("/member/idCheck.ajax", new IdCheckAjaxService());
+		actionList.put("/member/signIn.ajax", new SignInAjaxService());
 
 
 		actionList.put("/member/deleteMember.ajax?id=???",new DeleteMemberAjaxService());
@@ -47,7 +49,7 @@ public class AjaxController extends HttpServlet {
 //		actionList.put("/seller/writeSale.ajax", new WriteSaleAjaxService());
 		actionList.put("/seller/editSale.ajax", new EditSaleAjaxService());
 		actionList.put("/seller/productAdd.ajax", new ProductAddAjaxService());
-		actionList.put("/member/review.ajax", new lee2_AddReviewService());
+		actionList.put("/member/review.ajax", new AddReviewServiceAjax());
 		actionList.put("/team3_ShoppingSite/seller/InqPostList.ajax", new InqPostListAjaxService());
 		actionList.put("/member/reviewList.ajax", new ReviewListAjaxService());
 		System.out.println(" initialized");
